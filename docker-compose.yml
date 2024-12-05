@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  replica1:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: replica1
+    command: ["thrift", "9000"]
+    network_mode: "host"
+    ports:
+      - "9000:9000"
+
+  replica2:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: replica2
+    network_mode: "host"
+    command: ["thrift", "9001"]
+    ports:
+      - "9001:9001"
+
+  replica3:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: replica3
+    network_mode: "host"
+    command: ["thrift", "9002"]
+    ports:
+      - "9002:9002"
+
+  replica4:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: replica4
+    network_mode: "host"
+    command: ["thrift", "9003"]
+    ports:
+      - "9003:9003"
+
+  replica5:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    container_name: replica5
+    command: ["thrift", "9004"]
+    ports:
+      - "9004:9004"
+
+#  client:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.client
+#    container_name: thrift-client
+#    stdin_open: true
+#    network_mode: "host"
+#    depends_on:
+#      - replica1
+#    command: ["thrift", "127.0.0.1", "9000"]
